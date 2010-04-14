@@ -1,4 +1,8 @@
 runImputation <- function () {
+  if (requireDataOrImp() == FALSE) {
+    return (NULL)
+  }
+
   states <- c("normal", "disabled")
   
   render <- function () {
@@ -217,7 +221,7 @@ runImputation <- function () {
   tkconfigure(check.convergence.chk, variable=check.convergence, state="disable")
   check.coef.convergence.chk <- tkcheckbutton (frameLeft)
   tkconfigure(check.coef.convergence.chk,variable=check.coef.convergence)
-  check.convergence.label <- tklabel (frameLeft, text="Check convergence of imputed values")
+  check.convergence.label <- tklabel (frameLeft, text="Check convergence of imputed values", state="disable")
   check.coef.convergence.label <- tklabel (frameLeft, text="Check convergence of coefficients")
   tkgrid (check.convergence.label, row=8, column=0, sticky="w")
   tkgrid (check.coef.convergence.label, row=9, column=0, sticky="w")
@@ -246,7 +250,7 @@ runImputation <- function () {
   
   ## center frame 
   
-  tkgrid(tklabel(frameCenter, text = "Methods to deal with Colinearity", font = c("Arial", "11")), row = 0,
+  tkgrid(tklabel(frameCenter, text = "Methods to deal with Collinearity", font = c("Arial", "11")), row = 0,
     column = 3, columnspan = 2, sticky = "w")
  
   ## add.noise = TRUE
