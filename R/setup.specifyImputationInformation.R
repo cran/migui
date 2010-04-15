@@ -47,7 +47,7 @@ specifyImputationInformation <- function () {
       "continuous", "proportion", "ordered-categorical", "nonnegative", "positive-continuous",
       "count", "predictive-mean-matching")
   type <- tclVar (getMi(info)$type[[1]])
-  type.comboBox <- ttkcombobox (this.gui, values=types, textvariable=type)
+  type.comboBox <- ttkcombobox (this.gui, values=types, textvariable=type, width=30)
   tkgrid (tklabel (this.gui, text="Variable type"), row=0, column=1, sticky="w")
   tkgrid (type.comboBox, row=1, column=1, sticky="w")
   
@@ -87,8 +87,10 @@ specifyImputationInformation <- function () {
   
   
   apply.but <- tkbutton (this.gui, text="Apply", command=onApplyButton, width=10)
+  ok.but <- tkbutton (this.gui, text="Ok", command=function() tkdestroy(this.gui), width=10)
   exit.but <- tkbutton (this.gui, text="Exit", command=function() tkdestroy(this.gui), width=10)
   tkgrid (apply.but, row=7, column=3)
+  tkgrid (ok.but, row=8, column=3)
   tkgrid (exit.but, row=9, column=3)
   tkfocus (this.gui)
 }
