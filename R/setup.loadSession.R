@@ -19,8 +19,11 @@ loadSession <- function () {
     
     if (tclvalue (data.variable) != "") {
       data.name <- as.name (strsplit (tclvalue (data.variable), " ")[[1]][1])
-      putMi (data, eval(data.name, envir=vars.env))            
-      
+      if (class (get (as.character (data.name), envir=vars.env)) == "mi") {
+        putMi (data, eval(data.name, envir=vars.env)@data)
+      } else {
+        putMi (data, eval(data.name, envir=vars.env))  
+      }
       if (tclvalue (info.variable) == "") {
         putMi (info, mi.info(getMi(data)))
       }
@@ -29,7 +32,12 @@ loadSession <- function () {
     if (tclvalue(info.variable) != "") {
       if (existsMi (data)) {
         info.name <- as.name (strsplit (tclvalue (info.variable), " ")[[1]][1])
-        putMi (info, eval (info.name, envir=vars.env))
+        
+        if (class (get (as.character (info.name), envir=vars.env)) == "mi") {
+          putMi (info, eval (info.name, envir=vars.env)@mi.info)
+        } else {
+          putMi (info, eval (info.name, envir=vars.env))  
+        }
       }
     }
     
@@ -46,7 +54,7 @@ loadSession <- function () {
   }   
   
   loadFile <- function () {
-    fileName <- tclvalue(tkgetOpenFile())
+    fileName <- tclvalue(tkgetOpenFile(filetypes="{{All files} *} {{R Data files} {.Rdata}}"))
     if (nchar(fileName)) {
       rm (list=ls(envir=vars.env), envir=vars.env)
       load (fileName, envir=vars.env)

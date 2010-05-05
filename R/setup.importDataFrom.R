@@ -6,7 +6,7 @@ importDataFrom <- function(){
       "{{All files} *} {{Stata files} {.dta}}",
       "{{All files} *} {{SPSS} {.sav}}")
   names (allDataFormat) <- availableDataFormat 
-
+  
   readFunctions <- c( function (dataFile) { read.csv (dataFile, header=TRUE) },
       function (dataFile) { read.table(dataFile, header=TRUE) },
       function (dataFile) { read.dta(dataFile, convert.factors=FALSE) },
@@ -14,12 +14,6 @@ importDataFrom <- function(){
   names (readFunctions) <- availableDataFormat
   
   onChange <- function () {
-    if (existsMi (data)) {
-      rmMi (data)    
-    }
-    if (existsMi (info)) {
-      rmMi (info)    
-    }  
     getDataButton <- tkbutton(this.gui, text="Select a Data File", command=generateReadCommand(as.character(tclvalue(dataFormat))))
     
     tkgrid(getDataButton, row=1, column=1)
@@ -31,6 +25,12 @@ importDataFrom <- function(){
           if (dataFile == "") {
             return (NULL)
           }
+          if (existsMi (data)) {
+            rmMi (data)    
+          }
+          if (existsMi (info)) {
+            rmMi (info)    
+          }  
           data <- readFunctions[[choice]](dataFile)
           info <- mi.info(data)
           putMi (data)
@@ -41,11 +41,11 @@ importDataFrom <- function(){
   
   this.gui <- tktoplevel(width=400, height=50)
   tktitle (this.gui) <- "Import Data From..." 
-
+  
   # combobox for data format 
   dataFormat <- tclVar(availableDataFormat[1])
-  dataFormat.comboBox <- ttkcombobox(this.gui, values=availableDataFormat, textvariable=dataFormat, width=10)
-  tkgrid (tklabel(this.gui, text="Choose a Data Format"), row=0, column=0)
+  dataFormat.comboBox <- ttkcombobox(this.gui, values=availableDataFormat, textvariable=dataFormat, width=15)
+  tkgrid (tklabel(this.gui, text="Choose a Data Format", font=c("Arial", 10)), row=0, column=0)
   tkgrid (dataFormat.comboBox, row=1, column=0, sticky="e")
   tkbind (dataFormat.comboBox, "<<ComboboxSelected>>", onChange)  
   exitButton <- tkbutton(this.gui, text="Exit", command=function() tkdestroy(this.gui), width=10)
