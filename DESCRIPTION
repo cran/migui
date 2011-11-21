@@ -1,13 +1,14 @@
 Package: migui
-Version: 0.00-08
-Date: 2010-6-4
+Version: 0.00-09
+Date: 2011-11-21
 Title: Graphical User Interface of the mi Package
-Author: Daniel Lee <bearlee@alum.mit.edu>, Yu-Sung Su
-        <ys463@columbia.edu>
-Maintainer: Yu-Sung Su <ys463@columbia.edu>
+Author: 
+  Daniel Lee <bearlee@alum.mit.edu>,
+  Yu-Sung Su <suyusung@tsinghua.edu.cn>
+Maintainer: Yu-Sung Su <suyusung@tsinghua.edu.cn>
 Depends: tcltk, tkrplot, mi (>= 0.9-06), foreign
 Description: Graphical User Interface of the mi Package
 License: GPL (>= 2)
-Packaged: 2010-06-04 07:00:11 UTC; yusung
+Packaged: 2011-11-21 12:15:24 UTC; yusung
 Repository: CRAN
-Date/Publication: 2010-06-04 08:41:27
+Date/Publication: 2011-11-21 16:02:15
