@@ -1,4 +1,4 @@
-
-export(
-  migui
-)
+import(mi)
+import(gWidgets2)
+importFrom(arm, bayesglm)
+export(migui)

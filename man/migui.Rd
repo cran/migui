@@ -1,35 +1,38 @@
 \name{migui}
 \alias{migui}
 \title{
-    Graphical User Interface of the mi Package
+Function to Execute the Graphical User Interface
 }
 \description{
-    Graphical User Interface of the mi Package
+This function intiates the Graphical User Interface (GUI) for the
+\pkg{mi} package, making it easier to walk through the series of
+steps that are necessary to impute missing values and analyze
+completed data
 }
 \usage{
-  migui()
+migui(tk = "RGtk2")
 }
-
-
-
-\references{
-    Yu-Sung Su, Andrew Gelman, Jennifer Hill, Masanao Yajima. \emph{Forthcoming}.
-    \dQuote{Multiple Imputation with Diagnostics (mi) in R: Opening Windows into the Black Box}.
-    \emph{Journal of Statistical Software}.
+\arguments{
+  \item{tk}{Character string indicating which toolkit to use. Options
+    include \code{"RGtk2"} (the default) or \code{"Qt"}}
 }
-
+\value{
+Nothing is returned.
+}
 \author{
-  Daniel Lee <bearlee@alum.mit.edu>,
-  Yu-Sung Su \email{ys463@columbia.edu}
+Ben Goodrich
 }
-
-\examples{
-  migui()
+\note{
+The GUI requires one of the backends supported by the \pkg{gWidgets2}
+package. At the moment, the only two backends that are known to work
+well are the \pkg{gWidgets2RGtk2} package and the \pkg{gWidgets2Qt}
+package.
 }
-
 \seealso{
-    \code{\link[mi]{mi}}
+\code{\link[mi]{mi-package}}
 }
-
-
-\keyword{manipu}
+\examples{
+\dontrun{
+migui("RGtk2")
+}
+}
