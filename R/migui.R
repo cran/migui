@@ -18,8 +18,9 @@
 GUI_ENV <- new.env()
 
 # Invoke mi GUI
-migui <- function(tk = "RGtk2") {
-  options("guiToolkit" = tk)
+migui <- function(tk = "tcltk") {
+  if (!isTRUE(tk == "tcltk")) stop("the only supported 'tk' is 'tcltk'")
+  options("guiToolkit" = "tcltk")
   initialize();
   nextScreen();
 }
@@ -957,7 +958,7 @@ indent <- function(container) {
 
 exit_gui <- function(h) {
   #   dispose(h$obj);
-  reallyQuit <- gconfirm(paste("Do you really want to quit?\nCancel means 'no' while 'OK' means 'yes'"), icon = "warning")
+  reallyQuit <- gconfirm(paste("Do you really want to quit?"), icon = "warning")
   if(reallyQuit) dispose(GUI_ENV$window);
   return(invisible(NULL)); 
 }

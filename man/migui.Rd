@@ -10,11 +10,11 @@ steps that are necessary to impute missing values and analyze
 completed data
 }
 \usage{
-migui(tk = "RGtk2")
+migui(tk = "tcltk")
 }
 \arguments{
-  \item{tk}{Character string indicating which toolkit to use. Options
-    include \code{"RGtk2"} (the default) or \code{"Qt"}}
+  \item{tk}{Character string indicating which toolkit to use. Currently,
+    only \code{"tcltk"} (the default) is viable.}
 }
 \value{
 Nothing is returned.
@@ -24,9 +24,8 @@ Ben Goodrich
 }
 \note{
 The GUI requires one of the backends supported by the \pkg{gWidgets2}
-package. At the moment, the only two backends that are known to work
-well are the \pkg{gWidgets2RGtk2} package and the \pkg{gWidgets2Qt}
-package.
+package. At the moment, the only backend that is still on CRAN is
+provided by the \pkg{gWidgets2tcltk} package.
 }
 \seealso{
 \code{\link[mi]{mi-package}}

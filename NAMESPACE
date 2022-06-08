@@ -1,4 +1,11 @@
 import(mi)
 import(gWidgets2)
 importFrom(arm, bayesglm)
+
+importFrom("grDevices", "dev.off")
+importFrom("graphics", "title")
+importFrom("methods", "getClass", "is", "selectMethod", "signature")
+importFrom("stats", "is.ts", "qnorm")
+importFrom("utils", "browseURL", "data", "read.csv")
+
 export(migui)
